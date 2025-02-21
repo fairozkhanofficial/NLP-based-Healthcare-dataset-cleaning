@@ -1,0 +1,572 @@
+/* ===== Base Styles ===== */
+:root {
+    --primary: #3498db;
+    --primary-dark: #2980b9;
+    --secondary: #2ecc71;
+    --secondary-dark: #27ae60;
+    --accent: #9b59b6;
+    --light: #ecf0f1;
+    --dark: #34495e;
+    --danger: #e74c3c;
+    --warning: #f39c12;
+    --info: #1abc9c;
+    --text: #2c3e50;
+    --card-bg: #ffffff;
+    --body-bg: #f5f7fa;
+    --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    --border-radius: 8px;
+    --transition: all 0.3s ease;
+    --font-main: 'Nunito', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: var(--font-main);
+    background: var(--body-bg);
+    color: var(--text);
+    line-height: 1.6;
+}
+
+.app-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* ===== Typography ===== */
+h1 {
+    font-size: 2.2rem;
+    font-weight: 700;
+    color: var(--primary);
+    margin-bottom: 0.5rem;
+}
+
+h2 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+}
+
+h2 i {
+    margin-right: 10px;
+    color: var(--primary);
+}
+
+h3 {
+    font-size: 1.2rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+}
+
+p {
+    margin-bottom: 1rem;
+}
+
+.tagline {
+    color: var(--dark);
+    font-size: 1.1rem;
+    margin-bottom: 2rem;
+}
+
+/* ===== Header ===== */
+header {
+    text-align: center;
+    padding: 2rem 0;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 0.5rem;
+}
+
+.logo i {
+    font-size: 2.5rem;
+    color: var(--danger);
+    margin-right: 15px;
+}
+
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.1);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+.pulse {
+    animation: pulse 1.5s infinite;
+}
+
+/* ===== Card Styles ===== */
+.card {
+    background: var(--card-bg);
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow);
+    padding: 2rem;
+    margin-bottom: 2rem;
+    transition: var(--transition);
+}
+
+.card:hover {
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+    transform: translateY(-5px);
+}
+
+/* ===== Upload Section ===== */
+.upload-section {
+    margin-bottom: 3rem;
+}
+
+.file-upload-container {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+#drop-area {
+    border: 2px dashed var(--primary);
+    border-radius: var(--border-radius);
+    padding: 2rem;
+    text-align: center;
+    transition: var(--transition);
+    background-color: rgba(52, 152, 219, 0.05);
+}
+
+#drop-area.highlight {
+    background-color: rgba(52, 152, 219, 0.1);
+    border-color: var(--primary-dark);
+}
+
+.file-input-label {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    cursor: pointer;
+    padding: 1rem;
+    transition: var(--transition);
+}
+
+.file-input-label:hover {
+    color: var(--primary);
+}
+
+.file-input-label i {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+    color: var(--primary);
+}
+
+.file-requirements {
+    margin-top: 1.5rem;
+    color: var(--dark);
+    font-size: 0.9rem;
+}
+
+/* ===== Buttons ===== */
+.primary-btn, .secondary-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.75rem 1.5rem;
+    border-radius: var(--border-radius);
+    font-weight: 600;
+    cursor: pointer;
+    transition: var(--transition);
+    border: none;
+    font-size: 1rem;
+}
+
+.primary-btn {
+    background-color: var(--primary);
+    color: white;
+}
+
+.primary-btn:hover {
+    background-color: var(--primary-dark);
+    transform: translateY(-2px);
+}
+
+.secondary-btn {
+    background-color: var(--light);
+    color: var(--dark);
+}
+
+.secondary-btn:hover {
+    background-color: #dde4e6;
+    transform: translateY(-2px);
+}
+
+.primary-btn:disabled {
+    background-color: #95a5a6;
+    cursor: not-allowed;
+    transform: none;
+}
+
+.primary-btn i, .secondary-btn i {
+    margin-right: 8px;
+}
+
+/* ===== Processing Section ===== */
+.processing-section {
+    margin-bottom: 3rem;
+}
+
+.progress-container {
+    margin-bottom: 2rem;
+}
+
+.progress-bar {
+    width: 100%;
+    height: 12px;
+    background-color: #e0e0e0;
+    border-radius: 6px;
+    overflow: hidden;
+    margin-bottom: 0.5rem;
+}
+
+.progress {
+    height: 100%;
+    background: linear-gradient(90deg, var(--primary) 0%, var(--secondary) 100%);
+    transition: width 0.5s ease;
+    width: 0%;
+}
+
+#progressStatus {
+    font-size: 0.9rem;
+    color: var(--dark);
+    font-style: italic;
+}
+
+.processing-steps {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 2rem;
+}
+
+.step {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    width: 18%;
+}
+
+.step i {
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+    color: #95a5a6;
+}
+
+.step i.fas.fa-check-circle {
+    color: var(--secondary);
+}
+
+.step i.fas.fa-spinner {
+    color: var(--primary);
+}
+
+.step span {
+    font-size: 0.85rem;
+}
+
+/* ===== Results Section ===== */
+.summary-card {
+    margin-bottom: 2rem;
+}
+
+.stats-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+.stat-box {
+    display: flex;
+    align-items: center;
+    padding: 1.2rem;
+    background-color: rgba(236, 240, 241, 0.5);
+    border-radius: var(--border-radius);
+    transition: var(--transition);
+}
+
+.stat-box:hover {
+    background-color: rgba(236, 240, 241, 0.8);
+    transform: translateY(-3px);
+}
+
+.stat-box i {
+    font-size: 2rem;
+    margin-right: 1rem;
+}
+
+.stat-box:nth-child(1) i {
+    color: var(--primary);
+}
+
+.stat-box:nth-child(2) i {
+    color: var(--warning);
+}
+
+.stat-box:nth-child(3) i {
+    color: var(--info);
+}
+
+.stat-box:nth-child(4) i {
+    color: var(--danger);
+}
+
+.stat-text h3 {
+    font-size: 0.9rem;
+    margin-bottom: 0.2rem;
+    color: var(--dark);
+}
+
+.stat-text p {
+    font-size: 1.8rem;
+    font-weight: 700;
+    margin-bottom: 0;
+}
+
+.actions {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+
+/* ===== Visualizations ===== */
+.visualizations {
+    background: var(--card-bg);
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow);
+    padding: 2rem;
+    margin-bottom: 2rem;
+}
+
+.vis-tabs {
+    display: flex;
+    gap: 0.5rem;
+    margin-bottom: 1.5rem;
+    flex-wrap: wrap;
+}
+
+.tab-btn {
+    padding: 0.75rem 1.2rem;
+    background-color: var(--light);
+    border: none;
+    border-radius: var(--border-radius);
+    font-weight: 600;
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.tab-btn.active {
+    background-color: var(--primary);
+    color: white;
+}
+
+.tab-btn:hover:not(.active) {
+    background-color: #dde4e6;
+}
+
+.tab-content {
+    display: none;
+}
+
+.tab-content.active {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
+    gap: 2rem;
+}
+
+.chart-container {
+    margin-bottom: 2rem;
+}
+
+.chart-box {
+    background-color: white;
+    border-radius: var(--border-radius);
+    padding: 1rem;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    height: 300px;
+    position: relative;
+}
+
+/* ===== Modal Styles ===== */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    overflow: auto;
+}
+
+.modal-content {
+    background-color: var(--card-bg);
+    margin: 5% auto;
+    width: 90%;
+    max-width: 1000px;
+    border-radius: var(--border-radius);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+    animation: modalFade 0.3s;
+}
+
+@keyframes modalFade {
+    from {opacity: 0; transform: translateY(-30px);}
+    to {opacity: 1; transform: translateY(0);}
+}
+
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.5rem 2rem;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+.close-modal {
+    font-size: 1.8rem;
+    cursor: pointer;
+    color: #95a5a6;
+    transition: var(--transition);
+}
+
+.close-modal:hover {
+    color: var(--danger);
+}
+
+.modal-body {
+    padding: 2rem;
+}
+
+.tab-buttons {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+.data-table-container {
+    overflow-x: auto;
+    max-height: 500px;
+    overflow-y: auto;
+}
+
+#dataPreviewTable {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+#dataPreviewTable th {
+    position: sticky;
+    top: 0;
+    background-color: var(--primary);
+    color: white;
+    text-align: left;
+    padding: 0.8rem 1rem;
+    font-size: 0.9rem;
+}
+
+#dataPreviewTable td {
+    padding: 0.8rem 1rem;
+    border-bottom: 1px solid #e0e0e0;
+    font-size: 0.9rem;
+}
+
+#dataPreviewTable tr:nth-child(even) {
+    background-color: rgba(236, 240, 241, 0.3);
+}
+
+#dataPreviewTable tr:hover {
+    background-color: rgba(52, 152, 219, 0.05);
+}
+
+/* ===== Footer ===== */
+footer {
+    text-align: center;
+    padding: 2rem 0;
+    color: #7f8c8d;
+    font-size: 0.9rem;
+}
+
+/* ===== Helper Classes ===== */
+.hidden {
+    display: none;
+}
+
+/* ===== Responsive Styles ===== */
+@media (max-width: 768px) {
+    .app-container {
+        padding: 15px;
+    }
+    
+    h1 {
+        font-size: 1.8rem;
+    }
+    
+    .card {
+        padding: 1.5rem;
+    }
+    
+    .processing-steps {
+        flex-direction: column;
+        gap: 1rem;
+    }
+    
+    .step {
+        width: 100%;
+        flex-direction: row;
+        justify-content: flex-start;
+    }
+    
+    .step i {
+        margin-right: 1rem;
+        margin-bottom: 0;
+    }
+    
+    .stats-container {
+        grid-template-columns: 1fr;
+    }
+    
+    .tab-content.active {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 480px) {
+    h1 {
+        font-size: 1.5rem;
+    }
+    
+    .tagline {
+        font-size: 1rem;
+    }
+    
+    .logo i {
+        font-size: 2rem;
+    }
+    
+    .actions {
+        flex-direction: column;
+    }
+    
+    .primary-btn, .secondary-btn {
+        width: 100%;
+    }
+}

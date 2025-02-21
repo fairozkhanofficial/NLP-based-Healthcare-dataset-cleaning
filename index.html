@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Healthcare Dataset Cleaner</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.bundle.min.js"></script>
+</head>
+<body>
+    <div class="app-container">
+        <header>
+            <div class="logo">
+                <i class="fas fa-heartbeat pulse"></i>
+                <h1>Healthcare Data Cleaner</h1>
+            </div>
+            <p class="tagline">Advanced NLP and ML-powered data cleaning for healthcare datasets</p>
+        </header>
+
+        <main>
+            <section class="upload-section">
+                <div class="card">
+                    <h2><i class="fas fa-file-upload"></i> Upload Dataset</h2>
+                    <div class="file-upload-container">
+                        <div id="drop-area">
+                            <form class="upload-form">
+                                <input type="file" id="fileInput" accept=".csv" hidden>
+                                <label for="fileInput" class="file-input-label">
+                                    <i class="fas fa-cloud-upload-alt"></i>
+                                    <span id="file-chosen">Choose a CSV file or drop it here</span>
+                                </label>
+                            </form>
+                            <div class="file-requirements">
+                                <p>Supported format: CSV</p>
+                                <p>Maximum size: 50MB</p>
+                            </div>
+                        </div>
+                        <button id="uploadBtn" class="primary-btn" disabled>
+                            <i class="fas fa-magic"></i> Clean Dataset
+                        </button>
+                    </div>
+                </div>
+            </section>
+
+            <section class="processing-section hidden" id="processingSection">
+                <div class="card">
+                    <h2><i class="fas fa-cogs"></i> Processing</h2>
+                    <div class="progress-container">
+                        <div class="progress-bar">
+                            <div class="progress" id="progressBar"></div>
+                        </div>
+                        <p id="progressStatus">Analyzing dataset structure...</p>
+                    </div>
+                    <div class="processing-steps">
+                        <div class="step" id="step1">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Dataset Analysis</span>
+                        </div>
+                        <div class="step" id="step2">
+                            <i class="fas fa-circle"></i>
+                            <span>Missing Values Treatment</span>
+                        </div>
+                        <div class="step" id="step3">
+                            <i class="fas fa-circle"></i>
+                            <span>Text Normalization</span>
+                        </div>
+                        <div class="step" id="step4">
+                            <i class="fas fa-circle"></i>
+                            <span>Outlier Detection</span>
+                        </div>
+                        <div class="step" id="step5">
+                            <i class="fas fa-circle"></i>
+                            <span>Generating Visualizations</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="results-section hidden" id="resultsSection">
+                <div class="card summary-card">
+                    <h2><i class="fas fa-chart-pie"></i> Cleaning Summary</h2>
+                    <div class="stats-container">
+                        <div class="stat-box">
+                            <i class="fas fa-broom"></i>
+                            <div class="stat-text">
+                                <h3>Cleaned Records</h3>
+                                <p id="cleanedRecords">0</p>
+                            </div>
+                        </div>
+                        <div class="stat-box">
+                            <i class="fas fa-exclamation-triangle"></i>
+                            <div class="stat-text">
+                                <h3>Issues Fixed</h3>
+                                <p id="issuesFixed">0</p>
+                            </div>
+                        </div>
+                        <div class="stat-box">
+                            <i class="fas fa-magic"></i>
+                            <div class="stat-text">
+                                <h3>Imputed Values</h3>
+                                <p id="imputedValues">0</p>
+                            </div>
+                        </div>
+                        <div class="stat-box">
+                            <i class="fas fa-sort-numeric-down"></i>
+                            <div class="stat-text">
+                                <h3>Outliers Treated</h3>
+                                <p id="outliersFixed">0</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="actions">
+                        <button id="downloadBtn" class="primary-btn">
+                            <i class="fas fa-download"></i> Download Cleaned Dataset
+                        </button>
+                        <button id="viewDataBtn" class="secondary-btn">
+                            <i class="fas fa-table"></i> View Data
+                        </button>
+                    </div>
+                </div>
+
+                <div class="visualizations">
+                    <h2><i class="fas fa-chart-line"></i> Data Visualizations</h2>
+                    <div class="vis-tabs">
+                        <button class="tab-btn active" data-tab="beforeAfter">Before/After Comparison</button>
+                        <button class="tab-btn" data-tab="distributions">Distributions</button>
+                        <button class="tab-btn" data-tab="correlations">Correlations</button>
+                        <button class="tab-btn" data-tab="textInsights">Text Insights</button>
+                    </div>
+                    <div class="vis-content">
+                        <div class="tab-content active" id="beforeAfter">
+                            <div class="chart-container">
+                                <h3>Missing Data Comparison</h3>
+                                <div class="chart-box">
+                                    <canvas id="missingDataChart"></canvas>
+                                </div>
+                            </div>
+                            <div class="chart-container">
+                                <h3>Data Quality Score</h3>
+                                <div class="chart-box">
+                                    <canvas id="qualityScoreChart"></canvas>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tab-content" id="distributions">
+                            <div class="chart-container">
+                                <h3>Numerical Features Distribution</h3>
+                                <div class="chart-box">
+                                    <canvas id="numDistChart"></canvas>
+                                </div>
+                            </div>
+                            <div class="chart-container">
+                                <h3>Categorical Features Distribution</h3>
+                                <div class="chart-box">
+                                    <canvas id="catDistChart"></canvas>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tab-content" id="correlations">
+                            <div class="chart-container">
+                                <h3>Feature Correlation Matrix</h3>
+                                <div class="chart-box">
+                                    <canvas id="correlationChart"></canvas>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tab-content" id="textInsights">
+                            <div class="chart-container">
+                                <h3>Medical Term Frequency</h3>
+                                <div class="chart-box">
+                                    <canvas id="termFreqChart"></canvas>
+                                </div>
+                            </div>
+                            <div class="chart-container">
+                                <h3>Text Field Quality Improvement</h3>
+                                <div class="chart-box">
+                                    <canvas id="textQualityChart"></canvas>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <div id="dataPreviewModal" class="modal">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h2>Data Preview</h2>
+                        <span class="close-modal">&times;</span>
+                    </div>
+                    <div class="modal-body">
+                        <div class="tab-buttons">
+                            <button class="tab-btn active" data-preview="original">Original Data</button>
+                            <button class="tab-btn" data-preview="cleaned">Cleaned Data</button>
+                        </div>
+                        <div class="data-table-container">
+                            <table id="dataPreviewTable">
+                                <!-- Table content will be inserted dynamically -->
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <footer>
+            <p>Powered by advanced NLP and Machine Learning algorithms</p>
+            <p>&copy; 2025 Healthcare Data Solutions</p>
+        </footer>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
