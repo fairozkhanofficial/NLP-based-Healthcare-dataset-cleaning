@@ -1,0 +1,21 @@
+cleaning report
+----------------------------------------
+rows_in: 9030
+missing_before: 3011
+unparseable_dobs: 137
+gender_unknown: 624
+bp_parsed: 8389
+weights_converted_from_lbs: 2544
+age_outliers_nulled: 75
+ages_filled_from_dob: 123
+phones_invalid: 364
+emails_invalid: 533
+diagnosis_unmatched: 186
+exact_dupes_removed: 250
+near_dupes_removed: 179
+rows_out: 8601
+missing_after: 4019
+----------------------------------------
+note: missing_after counts nulls in the cleaned file. some of
+those are new on purpose - invalid phones, emails and junk ages
+get nulled rather than kept wrong.
